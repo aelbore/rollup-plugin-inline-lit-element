@@ -1,0 +1,31 @@
+{
+  "name": "rollup-plugin-inline-lit-element",
+  "version": "1.0.0",
+  "description": "Rollup plugin to inline external styles in lit-element",
+  "main": "index.js",
+  "scripts": {
+    "build": "ts-node tools/build.ts",
+    "build.demo": "ts-node tools/build.demo.ts",
+    "test": "aria test examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aelbore/rollup-plugin-inline-lit-element.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aelbore/rollup-plugin-inline-lit-element/issues"
+  },
+  "homepage": "https://github.com/aelbore/rollup-plugin-inline-lit-element#readme",
+  "devDependencies": {
+    "@types/jasmine": "^3.3.12",
+    "aria-tools": "0.0.4",
+    "lit-custom-element": "0.0.5",
+    "lit-element": "^2.1.0",
+    "node-sass": "^4.11.0",
+    "rollup-plugin-minify-html-literals": "^1.2.2",
+    "typescript": "^3.4.1"
+  }
+}
