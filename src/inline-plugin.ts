@@ -4,7 +4,6 @@ import * as path from 'path'
 import MagicString from 'magic-string'
 
 import { inlineCSS } from './inline-css-transformer'
-import { inlineSass } from './inline-sass-transformer'
 import { cssImportDeclation } from './css-import-declaration'
 
 const resolveId = importee => { 
@@ -30,7 +29,7 @@ const transfileModule = (filePath: string, code: string, transformers: any[]) =>
     },
     transformers: { 
       before: [
-        inlineSass(filePath),
+        inlineCSS(filePath),
         ...transformers,
         cssImportDeclation()
       ]
@@ -39,7 +38,9 @@ const transfileModule = (filePath: string, code: string, transformers: any[]) =>
   return { code: outputText, map: sourceMapText }
 }
 
-export function inlineLitElement({ transformers }) {
+export { cssImportDeclation }
+
+export function inlineLitElement() {
   return {
     name: 'inlineLitElement',    
     resolveId: resolveId,
@@ -47,7 +48,7 @@ export function inlineLitElement({ transformers }) {
     transform (code, id) {  
       const magicString = new MagicString(code);
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
-        return transfileModule(id, magicString.toString(), transformers || [])
+        return transfileModule(id, magicString.toString(), [])
       }
       return { 
         code: magicString.toString(),

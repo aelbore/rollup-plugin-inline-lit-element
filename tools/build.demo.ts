@@ -4,11 +4,13 @@ import { rollup } from 'rollup'
 import { clean } from 'aria-fs'
 
 import minifyHTML from 'rollup-plugin-minify-html-literals';
+import { terser } from 'rollup-plugin-terser'
 
 const { inlineLitElement } = require('../dist/inline-plugin')
 
 const typescript2 = require('rollup-plugin-typescript2');
 const resolve = require('rollup-plugin-node-resolve')
+
 
 const INPUT_FILE = 'demo/counter/counter.ts'
 const OUTPUT_FILE = 'dist/demo/counter/counter.js'
@@ -21,14 +23,10 @@ const rollupConfig = {
   inputOptions: {
     treeshake: true,
     input: INPUT_FILE,
-    external: [
-      'lit-element'
-    ],
+    external: [],
     plugins: [
       minifyHTML(),
-      inlineLitElement({
-        includeSass: true
-      }),
+      inlineLitElement(),
       typescript2({
         tsconfigDefaults: { 
           compilerOptions: { 
@@ -43,9 +41,10 @@ const rollupConfig = {
         exclude: [ 'demo' ],
         check: false,
         cacheRoot: path.join(path.resolve(), 'node_modules/.tmp/.rts2_cache'), 
-        useTsconfigDeclarationDir: false
+        useTsconfigDeclarationDir: true
       }),    
-      resolve()
+      resolve(),
+      terser()
     ],
     onwarn (warning) {
       if (warning.code === 'THIS_IS_UNDEFINED') { return; }
@@ -53,10 +52,8 @@ const rollupConfig = {
     }
   },
   outputOptions: {
-    sourcemap: false,
-    globals: {
-      'lit-element': 'litElement'
-    },
+    sourcemap: true,
+    globals: {},
     file: OUTPUT_FILE,
     format: 'esm'
   }

@@ -8,7 +8,7 @@ class Counter extends LitElement {
   static get properties() {
     return {
       count: {
-        type: String,
+        type: Number,
         value: () => 0
       }
     }
