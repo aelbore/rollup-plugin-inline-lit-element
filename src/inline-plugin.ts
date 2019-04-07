@@ -38,8 +38,6 @@ const transfileModule = (filePath: string, code: string, transformers: any[]) =>
   return { code: outputText, map: sourceMapText }
 }
 
-export { cssImportDeclation }
-
 export function inlineLitElement() {
   return {
     name: 'inlineLitElement',    
