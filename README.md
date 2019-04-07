@@ -66,7 +66,35 @@ Installation
     }
   }  
   ```
+ 
+ * output of your `hello-world.js`
+   ```javascript
+  import { LitElement, html, css } from 'lit-element'
+  import './hello-world.css'
+
+  class HelloWorld extends LitElement {
+  
+    static get styles() {
+      return css `h1 { color: red; }`
+    }
+
+    static get properties() {
+      return {
+        message: { type: String }
+      }
+    }
+
+    render() {
+      return html `<h1>Hello ${this.message}</h1>`
+    }
+
+  }
+
+  customElements.define('hello-world', HelloWorld)  
+  ```
+  
 <br />
+
 
 ## Support Sass
   ```
