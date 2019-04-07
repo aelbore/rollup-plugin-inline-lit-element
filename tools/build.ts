@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as util from 'util'
 
 import { rollup } from 'rollup'
+import { clean } from 'aria-fs'
 
 const writeFile = util.promisify(fs.writeFile)
 
@@ -14,6 +15,14 @@ const OUTPUT_FILE = 'dist/inline-plugin.js'
 
 function rollupBuild({ inputOptions, outputOptions }) {
   return rollup(inputOptions).then(bundle => bundle.write(outputOptions));
+}
+
+async function copyPackageFile() {
+  const FILE_NAME = 'package.json';
+  const pkg = require(`../${FILE_NAME}`);
+  delete pkg.scripts;
+  delete pkg.devDependencies;
+  return writeFile(`dist/${FILE_NAME}`, JSON.stringify(pkg, null, 2))
 }
 
 const rollupConfig = {
@@ -53,4 +62,6 @@ const rollupConfig = {
   }
 }
 
-rollupBuild(rollupConfig)
+clean('dist')
+  .then(() => rollupBuild(rollupConfig))
+  .then(() => copyPackageFile())
