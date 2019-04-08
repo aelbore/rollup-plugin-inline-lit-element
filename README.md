@@ -7,15 +7,16 @@ Installation
     npm install --save-dev rollup-plugin-inline-lit-element
   ```
 
-Setup
-------------
+## Examples
+* [ Hello World ](https://github.com/aelbore/inline-styles-lit-element)
+
+## Setup
 * `hello-world.css`
   ```css
   h1 {
     color: red;
   }
   ```
-  <br />
 
 * `hello-world.js`
   ```javascript
@@ -38,7 +39,6 @@ Setup
 
   customElements.define('hello-world', HelloWorld)  
   ```
-  <br />
 
 * `rollup.config.js`
   ```javascript
@@ -68,11 +68,7 @@ Setup
   ```
 <br />
 
-Support Sass
-------------
+## Support Sass
   ```
     npm install --save-dev node-sass
   ```
-
-## Examples
-* [ Hello World ](https://github.com/aelbore/inline-styles-lit-element)
