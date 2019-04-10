@@ -35,7 +35,7 @@ Decorators
   ```javascript
   import { LitElement, html, css } from 'lit-element'
 
-  class HelloWorld extends LitElement {
+  export class HelloWorld extends LitElement {
 
     static get styles() {
       return css `h1 { color: red; }`
