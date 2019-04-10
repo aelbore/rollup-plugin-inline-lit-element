@@ -10,6 +10,7 @@ Installation
 ## Examples
 * [ Hello World ](https://github.com/aelbore/inline-styles-lit-element)
 * [ Todo App ](https://github.com/aelbore/inline-styles-lit-element/tree/todo-lit-element)
+* [ Decorators ](https://github.com/aelbore/rollup-plugin-inline-lit-element/tree/master/demo/decorators)
 
 ## Setup
 * `hello-world.css`
