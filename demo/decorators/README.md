@@ -2,7 +2,7 @@ Decorators
 ------------
 
 
-## Setup
+#### Setup
 * `hello-world.css`
   ```css
   h1 {
@@ -55,8 +55,9 @@ Decorators
 
   customElements.define('hello-world', HelloWorld)  
   ```
+<br />
 
-## actual output without inlineLitElement plugin
+#### Actual output without inlineLitElement plugin
 * Has additional code
   ```javascript
   var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
