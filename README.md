@@ -1,5 +1,5 @@
 # rollup-plugin-inline-lit-element
-Rollup plugin to inline external styles in lit-element
+Rollup plugin to inline external styles in lit-element, transpile decorators to native javascript (see [Decorators](https://github.com/aelbore/rollup-plugin-inline-lit-element/tree/master/demo/decorators))
 
 Installation
 ------------
