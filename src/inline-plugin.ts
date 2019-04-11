@@ -5,6 +5,7 @@ import MagicString from 'magic-string'
 
 import { inlineCSS } from './inline-css-transformer'
 import { cssImportDeclation } from './css-import-declaration'
+import { customElementDefine } from './element-define'
 
 const resolveId = importee => { 
   if (importee.includes('.css') || importee.includes('.scss')) return importee; 
@@ -29,6 +30,7 @@ const transfileModule = (filePath: string, code: string, transformers: any[]) =>
     },
     transformers: { 
       before: [
+        customElementDefine(),
         inlineCSS(filePath),
         ...transformers,
         cssImportDeclation()

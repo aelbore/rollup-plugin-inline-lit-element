@@ -42,6 +42,9 @@ const rollupConfig = {
             declaration: true,
             lib: [ "dom", "es2015", "es2017" ]
           },
+          exclude: [
+            "demo/**/*"
+          ],
           include: [ INPUT_FILE ]
         },
         check: false,

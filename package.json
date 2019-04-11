@@ -4,10 +4,10 @@
   "description": "Rollup plugin to inline external styles in lit-element",
   "main": "inline-plugin.js",
   "scripts": {
-    "build": "ts-node tools/build.ts",
-    "build.demo": "npm run build && ts-node tools/build.demo.ts",
+    "build": "ts-node --project tools/tsconfig.json tools/build.ts",
+    "build.demo": "npm run build && ts-node --project tools/tsconfig.json tools/build.demo.ts",
     "rollup.build": "rollup -c",
-    "serve": "ts-node tools/server.ts",
+    "serve": "ts-node --project tools/tsconfig.json tools/server.ts",
     "test": "aria test demo"
   },
   "repository": {

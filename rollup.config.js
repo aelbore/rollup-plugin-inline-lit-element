@@ -4,9 +4,12 @@ import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 const { inlineLitElement } = require('./dist/inline-plugin')
 
+const INPUT_FILE = 'demo/decorators/hello-world/hello-world.ts'
+const OUTPUT_FILE = 'dist/hello-world/hello-world.js'
+
 export default {
   treeshake: true,
-  input: 'demo/hello-world/hello-world.js',
+  input: INPUT_FILE,
   external: [],
   plugins: [
     minifyHTML(),
@@ -17,7 +20,7 @@ export default {
   output: {
     sourcemap: true,
     globals: {},
-    file: 'dist/hello-world/hello-world.js',
+    file: OUTPUT_FILE,
     format: 'esm'
   }
 }
