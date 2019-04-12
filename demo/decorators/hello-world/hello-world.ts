@@ -1,5 +1,4 @@
 import { LitElement, html, customElement } from 'lit-element'
-import './hello-world.css'
 
 @customElement('hello-world')
 export class HelloWorld extends LitElement {

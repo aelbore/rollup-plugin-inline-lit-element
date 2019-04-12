@@ -17,7 +17,7 @@ const loadById = id => {
   return null 
 }
 
-const transfileModule = (filePath: string, code: string, transformers: any[]) => {
+const transpileModule = (filePath: string, code: string, transformers: any[]) => {
   const { outputText, sourceMapText } = ts.transpileModule(code, {
     compilerOptions: {
       module: ts.ModuleKind.ES2015, 
@@ -48,7 +48,7 @@ export function inlineLitElement() {
     transform (code, id) {  
       const magicString = new MagicString(code);
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
-        return transfileModule(id, magicString.toString(), [])
+        return transpileModule(id, magicString.toString(), [])
       }
       return { 
         code: magicString.toString(),
