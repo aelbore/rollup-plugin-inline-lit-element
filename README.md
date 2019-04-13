@@ -4,8 +4,7 @@
 # rollup-plugin-inline-lit-element
 Rollup plugin to inline external styles in lit-element, transpile decorators to native javascript (see [Decorators](https://github.com/aelbore/rollup-plugin-inline-lit-element/tree/master/demo/decorators))
 
-[![npm version](https://badge.fury.io/js/rollup-plugin-inline-lit-element.svg)](https://www.npmjs.com/package/rollup-plugin-inline-lit-element)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Getting Started
 ------------
   ```
