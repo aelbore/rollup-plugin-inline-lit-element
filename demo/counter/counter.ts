@@ -3,14 +3,11 @@ import './counter.scss'
 
 class Counter extends LitElement {
 
-  count: number;
+  count: number = 0;
 
   static get properties() {
     return {
-      count: {
-        type: Number,
-        value: () => 0
-      }
+      count: { type: Number }
     }
   }
 

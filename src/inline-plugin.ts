@@ -1,11 +1,7 @@
-import * as ts from 'typescript'
 import * as path from 'path'
-
 import MagicString from 'magic-string'
 
-import { inlineCSS } from './inline-css-transformer'
-import { cssImportDeclation } from './css-import-declaration'
-import { customElementDefine } from './element-define'
+import { transpiler } from 'lit-element-transpiler'
 
 const resolveId = importee => { 
   if (importee.includes('.css') || importee.includes('.scss')) return importee; 
@@ -17,29 +13,6 @@ const loadById = id => {
   return null 
 }
 
-const transpileModule = (filePath: string, code: string, transformers: any[]) => {
-  const { outputText, sourceMapText } = ts.transpileModule(code, {
-    compilerOptions: {
-      module: ts.ModuleKind.ES2015, 
-      target: ts.ScriptTarget.ES2018,
-      skipLibCheck: true,
-      skipDefaultLibCheck: true,
-      strictNullChecks: false,
-      sourceMap: true,
-      newLine: ts.NewLineKind.LineFeed
-    },
-    transformers: { 
-      before: [
-        customElementDefine(),
-        inlineCSS(filePath),
-        ...transformers,
-        cssImportDeclation()
-      ]
-    }
-  }); 
-  return { code: outputText, map: sourceMapText }
-}
-
 export function inlineLitElement() {
   return {
     name: 'inlineLitElement',    
@@ -48,7 +21,7 @@ export function inlineLitElement() {
     transform (code, id) {  
       const magicString = new MagicString(code);
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
-        return transpileModule(id, magicString.toString(), [])
+        return transpiler(id, magicString.toString())
       }
       return { 
         code: magicString.toString(),

@@ -1,4 +1,6 @@
 import * as path from 'path'
+import * as util from 'util'
+import * as fs from 'fs'
 
 import { rollup } from 'rollup'
 import { clean } from 'aria-fs'
@@ -8,12 +10,16 @@ import { terser } from 'rollup-plugin-terser'
 
 const { inlineLitElement } = require('../dist/inline-plugin')
 
+const copyFile = util.promisify(fs.copyFile)
+
 const typescript2 = require('rollup-plugin-typescript2');
 const resolve = require('rollup-plugin-node-resolve')
 
-
 const INPUT_FILE = 'demo/counter/counter.ts'
 const OUTPUT_FILE = 'dist/demo/counter/counter.js'
+
+const HTML_FILE = path.join(path.dirname(INPUT_FILE), 'index.html')
+const HTML_FILE_OUTPUT = path.join(path.dirname(OUTPUT_FILE), 'index.html')
 
 function rollupBuild({ inputOptions, outputOptions }) {
   return rollup(inputOptions).then(bundle => bundle.write(outputOptions));
@@ -59,6 +65,8 @@ const rollupConfig = {
   }
 }
 
+
 clean('dist/demo')
-  .then(() => rollupBuild(rollupConfig))
-  .catch(error => console.log(error))
+.then(() => rollupBuild(rollupConfig))
+.then(() => copyFile(HTML_FILE, HTML_FILE_OUTPUT))
+.catch(error => console.log(error))

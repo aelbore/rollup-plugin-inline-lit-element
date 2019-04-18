@@ -1,0 +1,3 @@
+[submodule "transpiler"]
+	path = transpiler
+	url = https://github.com/aelbore/lit-element-transpiler.git

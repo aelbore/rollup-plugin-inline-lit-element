@@ -1,6 +1,14 @@
 # rollup-plugin-inline-lit-element
 Rollup plugin to inline external styles in lit-element, transpile decorators to native javascript (see [Decorators](https://github.com/aelbore/rollup-plugin-inline-lit-element/tree/master/demo/decorators))
 
+
+Getting Started
+------------
+  ```
+  git clone https://github.com/aelbore/rollup-plugin-inline-lit-element.git
+  npm install
+  ```
+
 Installation
 ------------
   ```
@@ -98,4 +106,13 @@ Installation
 ## Support Sass
   ```
     npm install --save-dev node-sass
+  ```
+<br />
+
+## Use Lit-Element-Transpiler
+  ```
+  git submodule init
+  git submodule update --remote
+
+  npm run link.transpiler
   ```
