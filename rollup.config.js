@@ -4,8 +4,8 @@ import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 const { inlineLitElement } = require('./dist/inline-plugin')
 
-const INPUT_FILE = 'demo/decorators/hello-world/hello-world.ts'
-const OUTPUT_FILE = 'dist/hello-world/hello-world.js'
+const INPUT_FILE = 'demo/decorators/counter/counter.ts'
+const OUTPUT_FILE = 'dist/counter/counter.js'
 
 export default {
   treeshake: true,
@@ -17,6 +17,10 @@ export default {
     resolve(),
     terser()
   ],
+  onwarn (warning) {
+    if (warning.code === 'THIS_IS_UNDEFINED') { return; }
+    console.log("Rollup warning: ", warning.message);
+  },
   output: {
     sourcemap: true,
     globals: {},
