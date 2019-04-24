@@ -1,15 +1,9 @@
-import { LitElement, html, customElement } from 'lit-element'
+import { LitElement, html, customElement, property } from 'lit-element'
 
 @customElement('hello-world')
 export class HelloWorld extends LitElement {
 
-  message
-
-  static get properties() {
-    return {
-      message: { type: String }
-    }
-  }
+  @property() message = ''
 
   render() {
     return html `<h1>Hello ${this.message}</h1>`

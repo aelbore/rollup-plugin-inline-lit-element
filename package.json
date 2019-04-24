@@ -4,10 +4,17 @@
   "description": "Rollup plugin to inline external styles in lit-element",
   "main": "inline-plugin.js",
   "scripts": {
+    "postinstall": "npm run bundle && npm run link.loader",
+    "link.loader": "ts-node --project tools/tsconfig.json tools/link-loader.ts",
     "link.transpiler": "ts-node --project tools/tsconfig.json tools/link-transpiler.ts && npm run build --prefix transpiler",
-    "build": "ts-node --project tools/tsconfig.json tools/build.ts",
+    "bundle": "ts-node --project tools/tsconfig.json tools/build.ts",
     "build.demo": "npm run build && ts-node --project tools/tsconfig.json tools/build.demo.ts",
-    "rollup.build": "rollup -c",
+    "rollup": "rollup -c",
+    "build.counter": "rollup -c ./demo/counter/rollup.config.js",
+    "build.counter.decorators": "rollup -c ./demo/decorators/counter/rollup.config.js",
+    "build.hello.world.decorators": "rollup -c ./demo/decorators/hello-world/rollup.config.js",
+    "copy.file": "ts-node --project tools/tsconfig.json tools/copy-file.ts",
+    "build.all": "npm run rollup && npm run build.counter && npm run build.counter.decorators && npm run build.hello.world.decorators && npm run copy.file",
     "serve": "ts-node --project tools/tsconfig.json tools/server.ts",
     "test": "aria test demo"
   },
@@ -39,7 +46,7 @@
   "devDependencies": {
     "@types/express": "^4.16.1",
     "@types/jasmine": "^3.3.12",
-    "@types/node": "^11.13.4",
+    "@types/node": "^11.13.6",
     "aria-tools": "0.0.4",
     "lit-element": "^2.1.0",
     "node-sass": "^4.11.0",
