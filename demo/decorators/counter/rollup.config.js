@@ -4,8 +4,8 @@ import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
 
-const INPUT_FILE = 'demo/hello-world/hello-world.js'
-const OUTPUT_FILE = 'dist/demo/hello-world/hello-world.js'
+const INPUT_FILE = 'demo/decorators/counter/counter.ts'
+const OUTPUT_FILE = 'dist/demo/decorators/counter/counter.js'
 
 export default {
   treeshake: true,

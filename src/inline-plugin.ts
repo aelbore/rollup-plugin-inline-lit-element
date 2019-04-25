@@ -1,7 +1,7 @@
 import * as path from 'path'
 import MagicString from 'magic-string'
 
-import { transpile, inlineStyles, customElementDefine, cssImportDeclation, propsDecorators } from 'lit-element-transpiler'
+import { transpiler } from 'lit-element-transpiler'
 
 const resolveId = importee => { 
   if (importee.includes('.css') || importee.includes('.scss')) return importee; 
@@ -21,16 +21,7 @@ export function inlineLitElement() {
     transform (code, id) {  
       const magicString = new MagicString(code);
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
-        return transpile(id, magicString.toString(), {
-          transformers: {
-            before: [
-              propsDecorators(),
-              customElementDefine(),
-              inlineStyles(id),
-              cssImportDeclation()
-            ]
-          }
-        })
+        return transpiler(id, magicString.toString())
       }
       return { 
         code: magicString.toString(),
