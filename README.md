@@ -59,7 +59,7 @@ Installation
   import resolve from 'rollup-plugin-node-resolve'
 
   import { terser } from 'rollup-plugin-terser'
-  const { inlineLitElement } = require('rollup-plugin-inline-lit-element')
+  import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
 
   export default {
     treeshake: true,
