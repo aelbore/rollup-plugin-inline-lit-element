@@ -1,8 +1,6 @@
-import * as util from 'util'
-import * as fs from 'fs'
-import * as path from 'path'
 
-const copyFile = util.promisify(fs.copyFile)
+import { sep } from 'path'
+import { copyFile } from 'aria-build'
 
 const files = [
   'demo/counter/index.html',
@@ -12,6 +10,6 @@ const files = [
 ]
 
 Promise.all(files.map(file => {
-  const destPath = file.replace('demo', 'dist' + path.sep + 'demo')
+  const destPath = file.replace('demo', 'dist' + sep + 'demo')
   return copyFile(file, destPath)
 }))

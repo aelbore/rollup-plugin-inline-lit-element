@@ -1,72 +1,30 @@
-import * as path from 'path'
-import * as util from 'util'
-import * as fs from 'fs'
 
-import { rollup } from 'rollup'
-import { clean } from 'aria-fs'
+import { join, dirname } from 'path'
+import { build, clean, TSRollupConfig, terser, copyFile, minifyHTML } from 'aria-build'
 
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import { terser } from 'rollup-plugin-terser'
+import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
 
-const { inlineLitElement } = require('../dist/inline-plugin')
+(async function() {
+  const input = 'demo/counter/counter.ts'
+  const file = 'dist/demo/counter/counter.js'
 
-const copyFile = util.promisify(fs.copyFile)
+  const HTML_FILE = join(dirname(input), 'index.html')
+  const HTML_FILE_OUTPUT = join(dirname(file), 'index.html')
 
-const typescript2 = require('rollup-plugin-typescript2');
-const resolve = require('rollup-plugin-node-resolve')
-
-const INPUT_FILE = 'demo/counter/counter.ts'
-const OUTPUT_FILE = 'dist/demo/counter/counter.js'
-
-const HTML_FILE = path.join(path.dirname(INPUT_FILE), 'index.html')
-const HTML_FILE_OUTPUT = path.join(path.dirname(OUTPUT_FILE), 'index.html')
-
-function rollupBuild({ inputOptions, outputOptions }) {
-  return rollup(inputOptions).then(bundle => bundle.write(outputOptions));
-}
-
-const rollupConfig = {
-  inputOptions: {
-    treeshake: true,
-    input: INPUT_FILE,
-    external: [],
+  const options: TSRollupConfig = {
+    input,
     plugins: [
       minifyHTML(),
       inlineLitElement(),
-      typescript2({
-        tsconfigDefaults: { 
-          compilerOptions: { 
-            target: 'es2015', 
-            module: 'esNext', 
-            moduleResolution: 'node',
-            declaration: true,
-            lib: [ "dom", "es2015", "es2017" ]
-          },
-          include: [ INPUT_FILE ]
-        },
-        exclude: [ 'demo' ],
-        check: false,
-        cacheRoot: path.join(path.resolve(), 'node_modules/.tmp/.rts2_cache'), 
-        useTsconfigDeclarationDir: true
-      }),    
-      resolve(),
       terser()
     ],
-    onwarn (warning) {
-      if (warning.code === 'THIS_IS_UNDEFINED') { return; }
-      console.log("Rollup warning: ", warning.message);
+    output: {
+      file,
+      format: 'es'
     }
-  },
-  outputOptions: {
-    sourcemap: true,
-    globals: {},
-    file: OUTPUT_FILE,
-    format: 'esm'
   }
-}
 
-
-clean('dist/demo')
-.then(() => rollupBuild(rollupConfig))
-.then(() => copyFile(HTML_FILE, HTML_FILE_OUTPUT))
-.catch(error => console.log(error))
+  await clean('dist/demo')
+  await build(options)
+  await copyFile(HTML_FILE, HTML_FILE_OUTPUT)
+})()

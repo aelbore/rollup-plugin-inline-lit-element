@@ -1,14 +1,12 @@
-import * as fs from 'fs'
-import * as path from 'path'
 
-import { symlinkDir } from 'aria-fs'
+import { resolve } from 'path'
+import { symlinkDir, exist } from 'aria-build'
 
-const OUTPUT_FOLDER = path.resolve('dist')
-const NODE_MODULES_FOLDER = path.resolve('node_modules/rollup-plugin-inline-lit-element')
+(async function() {
+  const OUTPUT_FOLDER = resolve('dist')
+  const NODE_MODULES_FOLDER = resolve('node_modules/rollup-plugin-inline-lit-element')
 
-Promise.resolve()
-  .then(() => {
-    return (fs.existsSync(OUTPUT_FOLDER))
-      ? symlinkDir(OUTPUT_FOLDER, NODE_MODULES_FOLDER)
-      : Promise.resolve()
-  })
+  if (await exist(OUTPUT_FOLDER)) {
+    await symlinkDir(OUTPUT_FOLDER, NODE_MODULES_FOLDER)
+  }
+})()
