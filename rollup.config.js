@@ -1,30 +1,25 @@
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import resolve from 'rollup-plugin-node-resolve'
 
-import { terser } from 'rollup-plugin-terser'
+import { terser, nodeResolve, minifyHTML, onwarn } from 'aria-build'
 import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
 
-const INPUT_FILE = 'demo/hello-world/hello-world.js'
-const OUTPUT_FILE = 'dist/demo/hello-world/hello-world.js'
+const input = 'demo/hello-world/hello-world.js'
+const file = 'dist/demo/hello-world/hello-world.js'
 
 export default {
   treeshake: true,
-  input: INPUT_FILE,
+  input,
   external: [],
   plugins: [
     minifyHTML(),
     inlineLitElement(),
-    resolve(),
+    nodeResolve(),
     terser()
   ],
-  onwarn (warning) {
-    if (warning.code === 'THIS_IS_UNDEFINED') { return; }
-    console.log("Rollup warning: ", warning.message);
-  },
+  onwarn,
   output: {
     sourcemap: true,
     globals: {},
-    file: OUTPUT_FILE,
-    format: 'esm'
+    file,
+    format: 'es'
   }
 }
