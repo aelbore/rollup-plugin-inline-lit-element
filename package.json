@@ -45,9 +45,9 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
-    "@types/jasmine": "^3.3.12",
-    "@types/node": "^12.0.2",
-    "aria-tools": "0.0.5",
+    "@types/jasmine": "^3.3.13",
+    "@types/node": "^12.0.3",
+    "aria-tools": "0.0.6",
     "lit-element": "^2.1.0",
     "node-sass": "^4.12.0"
   },
