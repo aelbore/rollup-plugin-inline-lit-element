@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-inline-lit-element",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Rollup plugin to inline external styles in lit-element",
   "main": "inline-plugin.js",
   "scripts": {
@@ -40,14 +40,14 @@
     "node-sass": "^4.12.0"
   },
   "dependencies": {
-    "lit-element-transpiler": "^0.0.4",
+    "lit-element-transpiler": "^0.0.5",
     "magic-string": "^0.25.4"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
     "@types/jasmine": "^3.5.0",
     "@types/node": "^12.12.14",
-    "aria-build": "0.0.16",
+    "aria-build": "0.0.18",
     "express": "^4.17.1",
     "lit-element": "^2.2.1",
     "node-sass": "^4.13.0"
