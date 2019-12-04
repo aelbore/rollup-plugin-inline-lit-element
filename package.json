@@ -47,7 +47,7 @@
     "@types/express": "^4.17.2",
     "@types/jasmine": "^3.5.0",
     "@types/node": "^12.12.14",
-    "aria-build": "0.0.15",
+    "aria-build": "0.0.16",
     "express": "^4.17.1",
     "lit-element": "^2.2.1",
     "node-sass": "^4.13.0"
