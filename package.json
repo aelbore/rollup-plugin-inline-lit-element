@@ -4,9 +4,9 @@
   "description": "Rollup plugin to inline external styles in lit-element",
   "main": "inline-plugin.js",
   "scripts": {
-    "postinstall": "npm run build && npm run link.loader",
+    "postinstall": "yarn build && yarn link.loader",
     "build": "aria-build -d -i ./src/inline-plugin.ts",
-    "link.loader": "aria-fs link ./dist ./node_modules/rollup-plugin-inline-lit-element",
+    "link.loader": "ts-node --project ./tools/tsconfig.json ./tools/link.loader.ts",
     "link.transpiler": "aria-fs link ./node_modules ./transpiler/node_modules && aria-fs link ./transpiler/dist ./node_modules/lit-element-transpiler && npm run build --prefix transpiler",
     "build.demo": "aria-build -f es --sourcemap -c ./tools/demo.config.ts -i ./demo/counter/counter.ts -o ./dist/demo/counter",
     "rollup": "rollup -c",
