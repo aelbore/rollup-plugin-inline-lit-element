@@ -13,10 +13,8 @@
     "build.counter": "rollup -c ./demo/counter/rollup.config.js",
     "build.counter.decorators": "rollup -c ./demo/decorators/counter/rollup.config.js",
     "build.hello.world.decorators": "rollup -c ./demo/decorators/hello-world/rollup.config.js",
-    "copy.file": "ts-node --project tools/tsconfig.json tools/copy-file.ts",
-    "build.all": "npm run rollup && npm run build.counter && npm run build.counter.decorators && npm run build.hello.world.decorators && npm run copy.file",
-    "serve": "ts-node --project tools/tsconfig.json tools/server.ts",
-    "test": "aria test demo"
+    "build.all": "yarn build.counter && yarn build.counter.decorators && yarn build.hello.world.decorators",
+    "serve": "ts-node --project tools/tsconfig.json tools/server.ts"
   },
   "repository": {
     "type": "git",
@@ -46,8 +44,8 @@
   "devDependencies": {
     "@types/express": "^4.17.2",
     "@types/jasmine": "^3.5.0",
-    "@types/node": "^12.12.14",
-    "aria-build": "0.0.18",
+    "@types/node": "^13.1.4",
+    "aria-build": "0.0.22",
     "express": "^4.17.1",
     "lit-element": "^2.2.1",
     "node-sass": "^4.13.0"

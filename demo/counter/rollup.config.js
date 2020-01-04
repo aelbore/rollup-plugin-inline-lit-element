@@ -1,30 +1,25 @@
-import minifyHTML from 'rollup-plugin-minify-html-literals';
-import resolve from 'rollup-plugin-node-resolve'
+import { onwarn, copy } from 'aria-build'
+import { plugins } from '../../rollup.plugins'
 
-import { terser } from 'rollup-plugin-terser'
-import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
-
-const INPUT_FILE = 'demo/counter/counter.ts'
-const OUTPUT_FILE = 'dist/demo/counter/counter.js'
+const input = 'demo/counter/counter.ts'
+const file = 'dist/demo/counter/counter.js'
 
 export default {
   treeshake: true,
-  input: INPUT_FILE,
+  input,
   external: [],
   plugins: [
-    minifyHTML(),
-    inlineLitElement(),
-    resolve(),
-    terser()
+    ...plugins,
+    copy({ 
+      targets: [
+        { src: './demo/counter/index.html', dest: './dist/demo/counter' }
+      ] 
+    })
   ],
-  onwarn (warning) {
-    if (warning.code === 'THIS_IS_UNDEFINED') { return; }
-    console.log("Rollup warning: ", warning.message);
-  },
+  onwarn,
   output: {
     sourcemap: true,
-    globals: {},
-    file: OUTPUT_FILE,
-    format: 'esm'
+    file,
+    format: 'es'
   }
 }

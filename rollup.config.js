@@ -1,6 +1,6 @@
 
-import { terser, nodeResolve, minifyHTML, onwarn } from 'aria-build'
-import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
+import { onwarn, copy } from 'aria-build'
+import { plugins } from './rollup.plugins'
 
 const input = 'demo/hello-world/hello-world.js'
 const file = 'dist/demo/hello-world/hello-world.js'
@@ -10,15 +10,16 @@ export default {
   input,
   external: [],
   plugins: [
-    minifyHTML(),
-    inlineLitElement(),
-    nodeResolve(),
-    terser()
+    ...plugins,
+    copy({ 
+      targets: [
+        { src: './demo/hello-world/index.html', dest: './dist/demo/hello-world' }
+      ] 
+    })
   ],
   onwarn,
   output: {
     sourcemap: true,
-    globals: {},
     file,
     format: 'es'
   }
