@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-inline-lit-element",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Rollup plugin to inline external styles in lit-element",
   "main": "inline-plugin.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "build.counter.decorators": "rollup -c ./demo/decorators/counter/rollup.config.js",
     "build.hello.world.decorators": "rollup -c ./demo/decorators/hello-world/rollup.config.js",
     "build.all": "yarn build.counter && yarn build.counter.decorators && yarn build.hello.world.decorators",
-    "serve": "ts-node --project tools/tsconfig.json tools/server.ts"
+    "serve": "ts-node --project tools/tsconfig.json tools/server.ts",
+    "build.todo": "aria-build -f es -i ./demo/todo/src/index.js -o ./dist/demo/todo -c ./demo/todo/aria.config.ts"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,7 @@
     "node-sass": ">= ^4.12.0 < ^4.13.0"
   },
   "dependencies": {
-    "lit-element-transpiler": "^0.0.6",
+    "lit-element-transpiler": "^0.0.7",
     "magic-string": "^0.25.5"
   },
   "devDependencies": {
@@ -48,6 +49,7 @@
     "express": "^4.17.1",
     "lit-element": "^2.2.1",
     "node-sass": "^4.13.0",
+    "rollup-plugin-filesize": "^6.2.1",
     "typescript": "^3.7.4"
   },
   "typings": "inline-plugin.d.ts"
