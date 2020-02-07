@@ -7,7 +7,6 @@
     "postinstall": "yarn build && yarn link.loader",
     "build": "aria-build -d -i ./src/inline-plugin.ts",
     "link.loader": "ts-node --project ./tools/tsconfig.json ./tools/link.loader.ts",
-    "link.transpiler": "aria-fs link ./node_modules ./transpiler/node_modules && aria-fs link ./transpiler/dist ./node_modules/lit-element-transpiler && npm run build --prefix transpiler",
     "build.demo": "aria-build -f es --sourcemap -c ./tools/demo.config.ts -i ./demo/counter/counter.ts -o ./dist/demo/counter",
     "rollup": "rollup -c",
     "build.counter": "rollup -c ./demo/counter/rollup.config.js",
@@ -15,7 +14,7 @@
     "build.hello.world.decorators": "rollup -c ./demo/decorators/hello-world/rollup.config.js",
     "build.all": "yarn build.counter && yarn build.counter.decorators && yarn build.hello.world.decorators",
     "serve": "ts-node --project tools/tsconfig.json tools/server.ts",
-    "build.todo": "aria-build -f es -i ./demo/todo/src/index.js -o ./dist/demo/todo -c ./demo/todo/aria.config.ts"
+    "build.todo": "aria-build -f es --sourcemap -i ./demo/todo/src/index.js -o ./dist/demo/todo -c ./demo/todo/aria.config.ts"
   },
   "repository": {
     "type": "git",
@@ -40,15 +39,18 @@
   },
   "dependencies": {
     "lit-element-transpiler": "^0.0.7",
-    "magic-string": "^0.25.5"
+    "magic-string": "^0.25.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
-    "@types/node": "^13.1.4",
-    "aria-build": "0.0.23",
+    "@types/node": "^13.7.0",
+    "aria-build": "^0.1.0",
+    "aria-fs": "^0.1.0",
+    "aria-mocha": "^0.1.0",
+    "aria-mocha-headless": "^0.1.0",
     "express": "^4.17.1",
     "lit-element": "^2.2.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "rollup-plugin-filesize": "^6.2.1",
     "typescript": "^3.7.4"
   },
