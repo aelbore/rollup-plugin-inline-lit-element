@@ -1,8 +1,0 @@
-[submodule "transpiler"]
-	path = transpiler
-	branch = master
-	url = https://github.com/aelbore/lit-element-transpiler.git
-[submodule "demo/todo"]
-	path = demo/todo
-	url = https://github.com/aelbore/inline-styles-lit-element.git
-	branch = todo-lit-element

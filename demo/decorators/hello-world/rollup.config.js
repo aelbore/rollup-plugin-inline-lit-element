@@ -1,14 +1,19 @@
 import { onwarn, copy } from 'aria-build'
-import { plugins } from '../../../rollup.plugins'
+import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
+import { plugins } from '../../../tools/rollup.plugins'
 
 const input = 'demo/decorators/hello-world/hello-world.ts'
 const file = 'dist/demo/decorators/hello-world/hello-world.js'
+
+const Plugins = [ ...plugins ]
+Plugins.shift()
 
 export default {
   treeshake: true,
   input,
   external: [],
   plugins: [
+    inlineLitElement(),
     ...plugins,
     copy({ 
       targets: [

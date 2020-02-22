@@ -1,6 +1,6 @@
 
 import { onwarn, copy } from 'aria-build'
-import { plugins } from './rollup.plugins'
+import { plugins } from './tools/rollup.plugins'
 
 const input = 'demo/hello-world/hello-world.js'
 const file = 'dist/demo/hello-world/hello-world.js'

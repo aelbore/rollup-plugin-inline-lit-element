@@ -1,32 +1,40 @@
 import * as path from 'path'
-import MagicString from 'magic-string'
 
-import { transpiler } from 'lit-element-transpiler'
+import { 
+  transform, 
+  SassPreprocessor, 
+  PostCssPreprocessor,
+  MagicString
+} from 'lit-element-transpiler'
 
-const resolveId = importee => { 
+const resolveId = (importee: string) => { 
   if (importee.includes('.css') || importee.includes('.scss')) return importee; 
   return null 
 }
 
-const loadById = id => { 
+const loadById = (id: string) => { 
   if (id.includes('.css') || id.includes('.scss')) return '';  
   return null 
 }
 
-export function inlineLitElement() {
+const transformCode = (code: string) => {
+  const magicString = new MagicString(code)
+  return { 
+    code: magicString.toString(), 
+    map: magicString.generateMap({ hires: true })  
+  }
+}
+
+export function inlineLitElement(options?: SassPreprocessor | PostCssPreprocessor) {
   return {
     name: 'inlineLitElement',    
     resolveId: resolveId,
     load: loadById,
-    transform (code, id) {  
-      const magicString = new MagicString(code);
+    async transform (code: string, id: string) {  
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
-        return transpiler(id, magicString.toString())
+        return transform(id, code, { cssOptions: options })
       }
-      return { 
-        code: magicString.toString(),
-        map: magicString.generateMap({ hires: true })
-      }
+      return transformCode(code)
     }
   }
 }

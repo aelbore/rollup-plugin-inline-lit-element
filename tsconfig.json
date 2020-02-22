@@ -5,10 +5,10 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "lib": ["es5", "es6", "dom"],
-    "module": "es2015",
+    "module": "esNext",
     "moduleResolution": "node",
     "outDir": "dist",
-    "target": "es6",
+    "target": "es2018",
     "allowJs": true
   }
 }

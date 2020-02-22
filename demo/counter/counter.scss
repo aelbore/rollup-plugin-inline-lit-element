@@ -1,3 +1,6 @@
+$bgColor: #000;
+$color: white;
+
 :host { 
   display: inline-block; 
 }
@@ -5,8 +8,8 @@
 :host button {
   width: 50px;
   height: 50px;
-  color: white;
-  background-color: #000;
+  color: $color;
+  background-color: $bgColor;
   border: 0;
   border-radius: 5px;
   font-size: 20px;
