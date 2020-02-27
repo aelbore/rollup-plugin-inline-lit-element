@@ -6,6 +6,8 @@
   "scripts": {
     "build": "aria-build -d -i ./src/inline-plugin.ts",
     "link.loader": "ts-node --project ./tools/tsconfig.json ./tools/link.loader.ts",
+    "unlink.lib": "ts-node --project ./tools/tsconfig.json ./tools/unlink.ts",
+    "link.lib": "ts-node --project ./tools/tsconfig.json ./tools/link.lib.ts",
     "build.demo": "aria-build -f es --sourcemap -c ./tools/demo.config.ts -i ./demo/counter/counter.ts -o ./dist/demo/counter",
     "rollup": "rollup -c",
     "build.counter": "aria-build -f es -i ./demo/counter/counter.ts -o ./dist/demo/counter --compress --sourcemap",
@@ -34,7 +36,7 @@
   },
   "homepage": "https://github.com/aelbore/rollup-plugin-inline-lit-element#readme",
   "peerDependencies": {
-    "node-sass": ">= ^4.12.0 < ^4.13.0"
+    "node-sass": ">= ^4.12.0 < ^4.13.1"
   },
   "dependencies": {
     "lit-element-transpiler": "^0.0.7"

@@ -4,16 +4,20 @@ import { inlineLitElement } from 'rollup-plugin-inline-lit-element'
 const scssVarLike = require('postcss-simple-vars')
 
 export default {
-  plugins: [ 
-    inlineLitElement({
-      preprocessor: 'postcss',
-      plugins: [ scssVarLike() ]
-    }), 
-    minifyHTML(),
-    copy({
-      targets: [
-        { src: './demo/hello-world/index.html', dest: './dist/demo/hello-world' }
-      ]
-    })
-  ]
+  plugins: {
+    before: [
+      inlineLitElement({
+        preprocessor: 'postcss',
+        plugins: [ scssVarLike() ]
+      }), 
+      minifyHTML()
+    ],
+    after: [
+      copy({
+        targets: [
+          { src: './demo/decorators/counter/index.html', dest: './dist/demo/decorators/counter' }
+        ]
+      })
+    ]
+  }
 }
