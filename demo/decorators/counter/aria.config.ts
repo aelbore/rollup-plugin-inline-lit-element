@@ -15,7 +15,7 @@ export default {
     after: [
       copy({
         targets: [
-          { src: './demo/decorators/counter/index.html', dest: './dist/demo/decorators/counter' }
+          { src: './demo/decorators/counter/*.html', dest: './dist/demo/decorators/counter' }
         ]
       })
     ]

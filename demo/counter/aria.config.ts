@@ -7,7 +7,7 @@ export default {
     minifyHTML(),
     copy({
       targets: [
-        { src: './demo/counter/index.html', dest: './dist/demo/counter' }
+        { src: './demo/counter/*.html', dest: './dist/demo/counter' }
       ]
     })
   ]
