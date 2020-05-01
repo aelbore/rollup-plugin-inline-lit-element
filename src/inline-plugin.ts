@@ -30,7 +30,7 @@ export function inlineLitElement(options?: SassPreprocessor | PostCssPreprocesso
     name: 'inlineLitElement',    
     resolveId: resolveId,
     load: loadById,
-    async transform(code: string, id: string) {  
+    transform(code: string, id: string) {  
       if (!id.includes(path.join(path.resolve(), 'node_modules'))) {
         return transform(id, code, { cssOptions: options })
       }
